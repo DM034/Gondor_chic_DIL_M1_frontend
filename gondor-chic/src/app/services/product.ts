@@ -9,6 +9,7 @@ export interface Produit {
   est_du_jour: boolean;
   prix: number;
   quantite_en_stock: number;
+  image_url: string;
 }
 
 @Injectable({

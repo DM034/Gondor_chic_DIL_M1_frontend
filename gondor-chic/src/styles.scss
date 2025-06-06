@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: 'gothic-md';
+  src: url('./assets/fonts/GrenzeGotisch-SemiBold.ttf');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'corps-jpn-md';
+  src: url('./assets/fonts/serif-jpn/NotoSerifJP-Medium.ttf');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+

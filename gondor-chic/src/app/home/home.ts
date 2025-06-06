@@ -18,7 +18,8 @@ export class HomeComponent implements OnInit {
         this.product = {
           name: products[0].libelle,
           price: products[0].prix,
-          stock: products[0].quantite_en_stock
+          stock: products[0].quantite_en_stock,
+          image: 'https://gondor-chic-api.mendrika.dev/'+(products[0].image_url)
         };
       }
     });

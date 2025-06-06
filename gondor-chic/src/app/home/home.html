@@ -9,25 +9,29 @@
     <div class="left">
       <h1 class="title">Gondor Chic</h1>
       <p class="subtitle">vous ouvre les portes de l'enchantement</p>
-      <p class="description">
-        Découvrez les produits de la Terre du Milieu : poudres de fée des bois de Lothlórien,
-        chemises de mithril forgées à Fondcombe, potions des Istari, et bien plus encore.
-        Commandez en ligne ou par papillon voyageur, et recevez vos artefacts sans quitter
-        votre tour ou tanière.
-      </p>
+      <div class="description">
+        <span>
+          <b class="bold">Découvrez les produits de la Terre du Milieu :</b> poudres de fée <br/> des bois de Lothlórien,
+          chemises de mithril forgées à<br/> Fondcombe, potions des Istari, et bien plus encore. 
+        </span>
+        <span>
+          <b class="bold">Commandez en ligne ou par papillon voyageur,</b> et recevez<br/> vos artefacts sans quitter
+          votre tour ou tanière.
+        </span>
+      </div>
       <button class="btn-secondary">Voir les catalogues</button>
     </div>
 
     <div class="right">
+      <h2 class="offre-titre">Produit du jour</h2>
       <div class="product-card">
-        <h2 class="offre-titre">Produit du jour</h2>
-        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=250&h=300&fit=crop" alt="Potion" class="image" />
+        <img [src]="product?.image" alt="Potion" class="image" />
         <p class="product-name">{{ product?.name}}</p>
         <div class="product-info">
           <span>{{ product?.price}} €</span>
           <span>Stock: {{ product?.stock}}</span>
         </div>
-        <button class="btn-secondary">Commander</button>
+        <button class="btn-left">Commander</button>
       </div>
     </div>
   </div>
