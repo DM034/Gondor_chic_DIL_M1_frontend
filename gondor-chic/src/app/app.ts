@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import {Home} from './home/home';
+import {HomeComponent} from './home/home';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
   imports: [
-    Home
+    HomeComponent,
+    HttpClientModule
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss'
