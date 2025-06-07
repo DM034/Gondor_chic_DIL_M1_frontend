@@ -15,11 +15,14 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.productService.getProduitDuJour().subscribe((products) => {
       if (products.length > 0) {
+        const imageUrl = 'https://gondor-chic-api.mendrika.dev/' + products[0].image_url;
+        console.log('URL image générée:', imageUrl);
+        console.log('image_url depuis API:', products[0].image_url);
         this.product = {
           name: products[0].libelle,
           price: products[0].prix,
           stock: products[0].quantite_en_stock,
-          image: 'https://gondor-chic-api.mendrika.dev/'+(products[0].image_url)
+          image: imageUrl
         };
       }
     });
