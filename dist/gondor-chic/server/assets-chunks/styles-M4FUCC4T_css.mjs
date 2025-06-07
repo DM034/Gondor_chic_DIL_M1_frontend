@@ -1,0 +1,2 @@
+export default `@font-face{font-family:gothic-md;src:url("./media/GrenzeGotisch-SemiBold-DH57B2CD.ttf");font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:corps-jpn-md;src:url("./media/NotoSerifJP-Medium-JVZVXNFM.ttf");font-weight:400;font-style:normal;font-display:swap}
+`;
