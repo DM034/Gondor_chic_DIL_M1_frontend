@@ -8,17 +8,28 @@ body, html {
 
 .page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #f5e6d3 0%, #ede0d0 100%);
+  // background: linear-gradient(135deg, #f5e6d3 0%, #ede0d0 100%);
   position: relative;
 }
 
 .top-bar {
-  background: rgba(139, 117, 93, 0.9);
+  background: rgba(0, 0, 0, 0.45);
+
+  position: relative;
+  backdrop-filter: blur(10px); // Optional: adds blur effect
   padding: 0.8rem 2rem;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   gap: 0.5rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+
+
 
   .title {
     font-size: 3rem;
@@ -70,6 +81,7 @@ body, html {
   margin: 0 auto;
   padding: 2rem;
   gap: 2rem;
+  margin-top: 100px;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -84,7 +96,8 @@ body, html {
     font-size: 5rem;
     // font-weight: bold;
     margin: 0 0 1rem 0;
-    color: #eebd1d;
+    // color: #eebd1d;
+    color: #FFFF;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     font-family: 'gothic-md', serif;
     letter-spacing: 2px;
@@ -152,9 +165,11 @@ body, html {
 
   .bienvenue {
     color: #663e14ed;
-    font-size: 1.3rem;
+    font-size: 50px;
     margin-bottom: 1rem;
     font-weight: bold;
+    font-family: 'gothic-md', serif;
+
   }
 
   .offre-titre {
