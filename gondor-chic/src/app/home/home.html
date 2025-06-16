@@ -9,7 +9,12 @@
   <div class="content">
     <div class="left">
       <h1 class="title">Gondor Chic</h1>
-      <p class="subtitle">vous ouvre les portes de l'enchantement</p>
+       <p class="bienvenue" *ngIf="user">
+        Bonjour {{ user.prenom }} {{ user.nom }}
+      </p>
+      <p class="subtitle" *ngIf="!user">
+        vous ouvre les portes de l'enchantement
+      </p>
       <div class="description">
         <span>
           <b class="bold">Découvrez les produits de la Terre du Milieu :</b> poudres de fée <br/> des bois de Lothlórien,

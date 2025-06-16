@@ -17,19 +17,21 @@ export class HomeComponent implements OnInit {
   usernameInput = '';
   passwordInput = '';
 
+  user: any = null;
+
   constructor(private productService: ProductService, private router: Router, private http: HttpClient) {}
 
   login() {
     const payload = {
       pseudo: this.usernameInput,
-      password: this.passwordInput
+      mot_de_passe: this.passwordInput
     };
 
     console.log('Payload envoyé :', payload);
 
     this.http.post<any>(
       'https://gondor-chic-api.mendrika.dev/api/auth/login',
-      JSON.stringify({ pseudo: 'dori_forgeron', password: 'MontagneDeFeu42!' }),
+      JSON.stringify({ pseudo: 'dori_forgeron', mot_de_passe: 'MontagneDeFeu42!' }),
       {
         headers: {
           'Content-Type': 'application/json'
@@ -40,7 +42,10 @@ export class HomeComponent implements OnInit {
         next: (res) => {
           localStorage.setItem('access_token', res.access_token);
           localStorage.setItem('user', JSON.stringify(res.user));
-          this.router.navigate(['/dashboard']);
+          this.user = res.user;
+          setTimeout(() => {
+            this.router.navigate(['/dashboard']);
+          }, 2000);
         },
         error: () => {
           alert('Erreur d’authentification');
