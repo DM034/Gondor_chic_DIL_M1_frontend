@@ -37,6 +37,5 @@ export class DashboardComponent implements OnInit {
 
   addToCart(): void {
     alert(`${this.quantite} x ${this.produitDuJour.libelle} ajouté(s) au panier.`);
-    // Ici tu peux ajouter la logique d'ajout réel dans le panier si besoin
   }
 }
