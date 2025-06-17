@@ -38,6 +38,12 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  logout(){
+    this.authService.logout();
+    this.user = null;
+    this.router.navigate(["/"]);
+  }
+
   ngOnInit(): void {
     this.loadProduitDuJour();
 

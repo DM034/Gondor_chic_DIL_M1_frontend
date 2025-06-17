@@ -10,7 +10,9 @@
     </ng-container>
     <ng-container *ngIf="user" >
       <span class="user-info">
-         <img [src]="user.image_url" alt="Avatar" class="avatar" />
+        <button class="btn-avatar" (click)="logout()">
+          <img [src]="user.image_url" alt="Avatar" class="avatar" />
+        </button>
 <!--        <img src="assets/img/avatar.png" alt="Avatar" class="avatar" />-->
 
       </span>
