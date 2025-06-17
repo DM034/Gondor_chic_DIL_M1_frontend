@@ -13,6 +13,7 @@ body, html {
 }
 
 .top-bar {
+  
   background: rgba(0, 0, 0, 0.45);
 
   position: relative;
@@ -91,6 +92,25 @@ body, html {
     align-items: center;
     gap: 0.5rem;
     transform: translateX(-60px); // décale vers la gauche
+    
+    .btn-avatar {
+      border: none;
+      background: transparent;
+      padding: 0;
+      cursor: pointer;
+      border-radius: 50%; /* pour que le bouton suive l'arrondi de l'avatar */
+      overflow: hidden; /* coupe les bords si image dépasse */
+      display: inline-block;
+      box-shadow: none;
+    }
+
+    .avatar {
+      width: 40px; /* ou autre taille adaptée */
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+    }
   }
 
   .avatar {
