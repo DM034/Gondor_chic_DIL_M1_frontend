@@ -71,6 +71,12 @@ body, html {
       background: #81501c;
     }
   }
+  .auth-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transform: translateX(-20px); // décale vers la gauche
+  }
 }
 
 .content {
