@@ -4,6 +4,7 @@ import { FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 import { Router } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
+import { AuthService } from "../services/client";
 
 @Component({
   selector: "app-home",
@@ -22,47 +23,27 @@ export class HomeComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+     private authService: AuthService
   ) {}
 
   login() {
-    const payload = {
-      pseudo: this.usernameInput,
-      mot_de_passe: this.passwordInput,
-    };
-
-    this.http
-      .post<any>(
-        "https://gondor-chic-api.mendrika.dev/api/auth/login",
-        payload,
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      )
-      .subscribe({
-        next: (res) => {
-          if (typeof localStorage !== "undefined") {
-            localStorage.setItem("access_token", res.access_token);
-            localStorage.setItem("user", JSON.stringify(res.user));
-          }
-          this.user = res.user;
-          window.location.reload();
-        },
-        error: () => {
-          alert("Erreur d’authentification");
-        },
-      });
+    this.authService.login(this.usernameInput, this.passwordInput).subscribe({
+      next: (res) => {
+        this.user = res.user;
+      },
+      error: () => {
+        alert("Erreur d’authentification");
+      },
+    });
   }
 
   ngOnInit(): void {
     this.loadProduitDuJour();
 
-    if (typeof localStorage !== "undefined") {
-      const userStr = localStorage.getItem("user");
-      if (userStr) {
-        this.user = JSON.parse(userStr);
-      }
-    }
+    this.authService.user$.subscribe((user) => {
+      this.user = user;
+    });
   }
 
   loadProduitDuJour() {
