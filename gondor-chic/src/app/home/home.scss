@@ -77,6 +77,30 @@ body, html {
     gap: 0.5rem;
     transform: translateX(-20px); // décale vers la gauche
   }
+
+  btn-avatar{
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  }
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transform: translateX(-60px); // décale vers la gauche
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  }
 }
 
 .content {

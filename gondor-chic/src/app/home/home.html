@@ -11,7 +11,7 @@
     <ng-container *ngIf="user" >
       <span class="user-info">
         <button class="btn-avatar" (click)="logout()">
-          <img [src]="user.image_url" alt="Avatar" class="avatar" />
+          <img src="assets/img/avatar.png" alt="Avatar" class="avatar" />
         </button>
 <!--        <img src="assets/img/avatar.png" alt="Avatar" class="avatar" />-->
 
@@ -46,7 +46,7 @@
         <img [src]="product?.image" [alt]="product?.name" class="image" />
         <p class="product-name">{{ product?.name}}</p>
         <div class="product-info">
-          <span>{{ product?.price}} €</span>
+          <span>{{ product?.price}} Gr</span>
           <span>Stock: {{ product?.stock}}</span>
         </div>
         <input
