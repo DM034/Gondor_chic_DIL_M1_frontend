@@ -31,6 +31,7 @@ export class HomeComponent implements OnInit {
     this.authService.login(this.usernameInput, this.passwordInput).subscribe({
       next: (res) => {
         this.user = res.user;
+        location.reload();
       },
       error: () => {
         alert("Erreur d’authentification");
