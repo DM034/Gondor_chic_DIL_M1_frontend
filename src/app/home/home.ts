@@ -14,6 +14,7 @@ import { AuthService } from "../services/client";
   styleUrls: ["./home.scss"],
 })
 export class HomeComponent implements OnInit {
+  isLoadingLogin = false;
   product: any = null;
   usernameInput = "";
   passwordInput = "";
@@ -28,12 +29,15 @@ export class HomeComponent implements OnInit {
   ) {}
 
   login() {
+    this.isLoadingLogin = true;
     this.authService.login(this.usernameInput, this.passwordInput).subscribe({
       next: (res) => {
         this.user = res.user;
+        this.isLoadingLogin = false;
         location.reload();
       },
       error: () => {
+        this.isLoadingLogin = false;
         alert("Erreur d’authentification");
       },
     });
