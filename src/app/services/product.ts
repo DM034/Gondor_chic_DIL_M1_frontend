@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface Produit {
   id: string;
@@ -16,7 +17,7 @@ export interface Produit {
   providedIn: 'root'
 })
 export class ProductService {
-  private apiUrl = 'https://gondor-chic-api.mendrika.dev/api/produits-du-jour';
+  private apiUrl = `${environment.apiBaseUrl}/produits-du-jour`;
 
   constructor(private http: HttpClient) {}
 
