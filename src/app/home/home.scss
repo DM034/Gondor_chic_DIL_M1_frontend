@@ -8,17 +8,39 @@ body, html {
 
 .page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #f5e6d3 0%, #ede0d0 100%);
+  // background: linear-gradient(135deg, #f5e6d3 0%, #ede0d0 100%);
   position: relative;
 }
 
 .top-bar {
-  background: rgba(139, 117, 93, 0.9);
+  
+  background: rgba(0, 0, 0, 0.45);
+
+  position: relative;
+  backdrop-filter: blur(10px); // Optional: adds blur effect
   padding: 0.8rem 2rem;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   gap: 0.5rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+
+
+
+  .title {
+    font-size: 3rem;
+    margin: 0 auto 0 0;
+    color: #FFFF;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    font-family: 'gothic-md', serif;
+    letter-spacing: 2px;
+    text-align: left;
+  }
 
   .input {
     padding: 0.4rem 1rem;
@@ -50,6 +72,55 @@ body, html {
       background: #81501c;
     }
   }
+  .auth-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transform: translateX(-20px); // décale vers la gauche
+  }
+
+  btn-avatar{
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  }
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transform: translateX(-60px); // décale vers la gauche
+    
+    .btn-avatar {
+      border: none;
+      background: transparent;
+      padding: 0;
+      cursor: pointer;
+      border-radius: 50%; /* pour que le bouton suive l'arrondi de l'avatar */
+      overflow: hidden; /* coupe les bords si image dépasse */
+      display: inline-block;
+      box-shadow: none;
+    }
+
+    .avatar {
+      width: 40px; /* ou autre taille adaptée */
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  }
 }
 
 .content {
@@ -60,6 +131,7 @@ body, html {
   margin: 0 auto;
   padding: 2rem;
   gap: 2rem;
+  margin-top: 100px;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -74,7 +146,8 @@ body, html {
     font-size: 5rem;
     // font-weight: bold;
     margin: 0 0 1rem 0;
-    color: #eebd1d;
+    // color: #eebd1d;
+    color: #FFFF;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     font-family: 'gothic-md', serif;
     letter-spacing: 2px;
@@ -139,7 +212,14 @@ body, html {
     text-align: center;
   }
 }
+  .bienvenue {
+    color: #663e14ed;
+    font-size: 50px;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    font-family: 'gothic-md', serif;
 
+  }
   .offre-titre {
     color: #663e14ed;
     font-size: 1.3rem;
@@ -198,6 +278,7 @@ body, html {
       padding: 0.3rem 1.5rem;
       border-radius: 5px;
       font-size: 1rem;
+      margin-top: 10px;
       cursor: pointer;
       transition: all 0.3s ease;
       &:hover {
@@ -223,4 +304,26 @@ body, html {
     padding-right: 0;
     text-align: center;
   }
+}
+
+/* Animation du spinner */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loader-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
 }

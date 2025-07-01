@@ -1,30 +1,89 @@
-import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../services/product';
+
+import { Component, OnInit } from "@angular/core";
+import { ProductService } from "../services/product";
+import { FormsModule } from "@angular/forms";
+import { CommonModule } from "@angular/common";
+import { Router } from "@angular/router";
+import { HttpClient } from "@angular/common/http";
+import { AuthService } from "../services/client";
 
 @Component({
-  selector: 'app-home',
+  selector: "app-home",
   standalone: true,
-  templateUrl: './home.html',
-  styleUrls: ['./home.scss'],
+  imports: [CommonModule, FormsModule],
+  templateUrl: "./home.html",
+  styleUrls: ["./home.scss"],
 })
 export class HomeComponent implements OnInit {
+  isLoadingLogin = false;
   product: any = null;
+  usernameInput = "";
+  passwordInput = "";
+  user: any = null;
+  quantite: number = 1;
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private router: Router,
+    private http: HttpClient,
+     private authService: AuthService
+  ) {}
+
+  login() {
+    this.isLoadingLogin = true;
+    this.authService.login(this.usernameInput, this.passwordInput).subscribe({
+      next: (res) => {
+        this.user = res.user;
+        this.isLoadingLogin = false;
+        location.reload();
+      },
+      error: () => {
+        this.isLoadingLogin = false;
+        alert("Erreur d’authentification");
+      },
+    });
+  }
+
+  logout(){
+    this.authService.logout();
+    this.user = null;
+    this.router.navigate(["/"]);
+  }
 
   ngOnInit(): void {
-    this.productService.getProduitDuJour().subscribe((products) => {
-      if (products.length > 0) {
-        const imageUrl = 'https://gondor-chic-api.mendrika.dev/' + products[0].image_url;
-        console.log('URL image générée:', imageUrl);
-        console.log('image_url depuis API:', products[0].image_url);
-        this.product = {
-          name: products[0].libelle,
-          price: products[0].prix,
-          stock: products[0].quantite_en_stock,
-          image: imageUrl
-        };
-      }
+    this.loadProduitDuJour();
+
+    this.authService.user$.subscribe((user) => {
+      this.user = user;
     });
+  }
+
+  loadProduitDuJour() {
+    this.productService.getProduitDuJour().subscribe(
+      (products) => {
+        if (products.length > 0) {
+          const p = products[0];
+          this.product = {
+            name: p.libelle,
+            price: p.prix,
+            stock: p.quantite_en_stock,
+            image: "https://gondor-chic-api.mendrika.dev/" + p.image_url,
+          };
+        } else {
+          console.warn("Aucun produit du jour trouvé.");
+          this.product = null;
+        }
+      },
+      (error) => {
+        console.error("Erreur lors du chargement du produit du jour :", error);
+        this.product = null;
+      }
+    );
+  }
+
+  addToCart(): void {
+    if (this.product) {
+      alert(`${this.quantite} x ${this.product.name} ajouté(s) au panier.`);
+    }
   }
 }

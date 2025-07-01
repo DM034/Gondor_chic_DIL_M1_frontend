@@ -1,14 +1,37 @@
 <div class="page">
   <div class="top-bar">
-    <input type="text" placeholder="Pseudo" class="input" />
-    <input type="password" placeholder="Mot de passe" class="input" />
-    <button class="btn">S'identifier</button>
+    <h1 class="title">Gondor Chic</h1>
+    <ng-container *ngIf="!user">
+      <div class="auth-container">
+        <input type="text" placeholder="Pseudo" class="input" [(ngModel)]="usernameInput" />
+        <input type="password" placeholder="Mot de passe" class="input" [(ngModel)]="passwordInput" />
+        <button class="btn" (click)="login()" [disabled]="isLoadingLogin">
+          <ng-container *ngIf="!isLoadingLogin">S'identifier</ng-container>
+          <div *ngIf="isLoadingLogin" class="loader-container">
+            <div class="spinner"></div>
+            <span>Connexion en cours...</span>
+          </div>
+        </button>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="user" >
+      <span class="user-info">
+        <button class="btn-avatar" (click)="logout()">
+          <img src="/img/avatar.png" alt="Avatar" class="avatar" />
+        </button>
+      </span>
+    </ng-container>
   </div>
 
   <div class="content">
     <div class="left">
       <h1 class="title">Gondor Chic</h1>
-      <p class="subtitle">vous ouvre les portes de l'enchantement</p>
+       <p class="bienvenue" *ngIf="user">
+        Bonjour {{ user.prenom }} {{ user.nom }}
+      </p>
+      <p class="subtitle" *ngIf="!user">
+        vous ouvre les portes de l'enchantement
+      </p>
       <div class="description">
         <span>
           <b class="bold">Découvrez les produits de la Terre du Milieu :</b> poudres de fée <br/> des bois de Lothlórien,
@@ -19,7 +42,6 @@
           votre tour ou tanière.
         </span>
       </div>
-      <button class="btn-secondary">Voir les catalogues</button>
     </div>
 
     <div class="right">
@@ -28,10 +50,20 @@
         <img [src]="product?.image" [alt]="product?.name" class="image" />
         <p class="product-name">{{ product?.name}}</p>
         <div class="product-info">
-          <span>{{ product?.price}} €</span>
+          <span>{{ product?.price}} Gr</span>
           <span>Stock: {{ product?.stock}}</span>
         </div>
-        <button class="btn-left">Commander</button>
+        <input
+          type="number"
+          min="1"
+          [(ngModel)]="quantite"
+          placeholder="Quantité"
+          class="input"
+          *ngIf="user"
+        />
+        <button class="btn-left" (click)="addToCart()" *ngIf="user">
+          Ajouter au panier
+        </button>
       </div>
     </div>
   </div>
